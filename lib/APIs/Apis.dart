@@ -3,35 +3,40 @@ import 'dart:io';
 import 'package:http/http.dart' as http;
 
 class APIs {
-  static const String _apiKey = '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'; // Replace with your actual API key
+  // Replace with your Google API key
+  static const String _apiKey = 'AIzaSyBzeCdf1xQqgpaYFmd7U_0fBPzd7nymJFY';
 
-  static Future<void> getAnswer(String question) async {
+  static Future<String> generateContent(String prompt) async {
     try {
       final response = await http.post(
-        Uri.parse('https://api.openai.com/v1/chat/completions'),
+        Uri.parse(
+            'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=$_apiKey'),
         headers: {
           HttpHeaders.contentTypeHeader: 'application/json',
-          HttpHeaders.authorizationHeader: 'Bearer $_apiKey',
         },
         body: jsonEncode({
-          "model": "gpt-3.5-turbo", // Use a correct model name
-          "messages": [
+          "contents": [
             {
-              "role": "user",
-              "content": question,
-            },
+              "parts": [
+                {"text": prompt}
+              ]
+            }
           ],
         }),
       );
 
       if (response.statusCode == 200) {
         final data = jsonDecode(response.body);
-        print(data);
+        print(data['candidates'][0]['content']['parts'][0]['text']);
+        return data['candidates'][0]['content']['parts'][0]['text'];
+
       } else {
         print('Error: ${response.statusCode} - ${response.body}');
+        return 'something went wronge';
       }
     } catch (e) {
       print('Exception caught: $e');
+      return 'something went wronge';
     }
   }
 }

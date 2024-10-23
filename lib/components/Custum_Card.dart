@@ -34,7 +34,7 @@ class _CustomCardState extends State<CustomCard> {
           children: [
             Lottie.asset(
               'assets/animations/${widget.lottie}.json',
-              width: 200,
+              width: 150,
             ),
             const SizedBox(width: 10), // Adds spacing between the Lottie and Text
             Expanded(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:oops_project/Authethication_screens/Ask_auth.dart';
 import 'package:oops_project/models/onboard.dart';
 import 'package:oops_project/screens/Home_page.dart';
 
@@ -62,7 +63,7 @@ class _OnbordingPageState extends State<OnbordingPage> {
                 onboardItems.length,
                     (i) => Container(
                   width: i==ind?35:20,
-                  height: 15, // Increased height for better visibility
+                  height: 15,
                   decoration: BoxDecoration(
                     color: i==ind?Colors.blue:Colors.grey,
                     borderRadius: BorderRadius.circular(8),
@@ -85,7 +86,7 @@ class _OnbordingPageState extends State<OnbordingPage> {
               ),
               onPressed: () {
                 if(ind == onboardItems.length - 1 ){
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=>HomePage()));
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>AskAuth()));
                 }
                 else{
                   c.nextPage(duration: Duration(seconds: 1), curve: Curves.easeInCirc);

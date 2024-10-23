@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:oops_project/APIs/Apis.dart';
 import 'package:oops_project/components/Custum_Card.dart';
 import 'package:oops_project/screens/ChatBox_Screen.dart';
 import 'package:oops_project/screens/Language_translate_screen.dart';
-import 'package:oops_project/screens/Text_to_Image_screen.dart'; // Ensure the path is correct
+import 'ImageGenerator_screen.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -13,13 +12,13 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  // Example navigation methods for onpress actions
+
   void navigateToChatbox() {
     Navigator.push(context, MaterialPageRoute(builder: (context) => ChatboxScreen()));
   }
 
   void navigateToTextToImage() {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => TextToImageScreen()));
+    Navigator.push(context, MaterialPageRoute(builder: (context) => ImagegeneratorScreen()));
   }
 
   void navigateToLanguageTranslator() {
@@ -29,7 +28,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
 
-    APIs.getAnswer('hi');
+    // APIs.generateContent('how are you');
     return Scaffold(
       backgroundColor: Colors.black54,
       appBar: AppBar(
@@ -60,7 +59,7 @@ class _HomePageState extends State<HomePage> {
           CustomCard(
             lottie: 'lang_translate',
             title: 'Language Translator',
-            onpress: navigateToLanguageTranslator, 
+            onpress: navigateToLanguageTranslator,
           ),
         ],
       ),
